@@ -4,7 +4,7 @@
 
 	<property name="package" value="textmvc" />
 	<property name="packagenames" value="${package}" />
-	<property name="distdir" value="./Classes" />
+	<property name="destdir" value="./Classes" />
 	<property name="docdir" value="./JavaDoc" />
 	<property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" />
 	<property name="copyright" value="Copyright 2008-2016 AOKI Atsushi. All Rights Reserved." />
@@ -15,7 +15,7 @@
 	</target>
 
 	<target name="prepare" depends="" description="prepare to compile">
-		<mkdir dir="${distdir}" />
+		<mkdir dir="${destdir}" />
 		<exec executable="date" spawn="false" />
 	</target>
 
@@ -23,7 +23,7 @@
 		<javac
 			fork="true"
 			srcdir="${basedir}"
-			distdir="${distdir}"
+			destdir="${destdir}"
 			includeAntRuntime="true"
 			encoding="UTF-8"
 			deprecation="on"
@@ -40,14 +40,14 @@
 	<target name="jar" depends="compile" description="make jar file">
 		<jar
 			jarfile="${package}.jar"
-			basedir="${distdir}"
+			basedir="${destdir}"
 			manifest="${package}.mf">
 		</jar>
 		<exec executable="date" spawn="false" />
 	</target>
 
 	<target name="clean" description="cleaning">
-		<delete dir="${distdir}" />
+		<delete dir="${destdir}" />
 		<delete file="${package}.jar" />
 		<delete dir="${docdir}" />
 		<delete dir="${instdir}" />
@@ -78,7 +78,7 @@
 		<javadoc
 			locale="ja_JP"
 			sourcepath="${basedir}"
-			distdir="${docdir}"
+			destdir="${docdir}"
 			packagenames="${packagenames}"
 			author="true"
 			version="true"
